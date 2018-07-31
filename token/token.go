@@ -1,0 +1,53 @@
+package token
+
+type TokenType string
+
+type Token struct {
+	Type    TokenType
+	Literal string
+}
+
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+func LookIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
+
+const (
+	ILLEGAL = "ILLEGAL"
+	EOF     = "EOF"
+
+	// 識別子 + リテラル
+	IDENT = "IDENT"
+	INT   = "INT"
+
+	// 識別子
+	ASSIGN   = "="
+	PLUS     = "+"
+	MINUS    = "-"
+	BANG     = "!"
+	ASTERISK = "*"
+	SLASH    = "/"
+
+	LT = "<"
+	GT = ">"
+
+	// デリミタ
+	COMMA     = ","
+	SEMICOLON = ";"
+
+	LPAREN = "("
+	RPAREN = ")"
+	LBRACE = "{"
+	RBRACE = "}"
+
+	// キーワード
+	FUNCTION = "FUNCTION"
+	LET      = "LET"
+)
