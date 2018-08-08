@@ -2,8 +2,5 @@ language: go
 go:
   - "1.10"
 install: true
-before_script:
-  - go get -v "github.com/golangci/golangci-lint/cmd/golangci-lint"
 script:
- - golangci-lint run
  - go test -v -race ./...
