@@ -7,6 +7,7 @@ import (
 
 	"github.com/gtongy/monkey/evaluator"
 	"github.com/gtongy/monkey/lexer"
+	"github.com/gtongy/monkey/object"
 	"github.com/gtongy/monkey/parser"
 )
 
@@ -32,7 +33,8 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		evaluated := evaluator.Eval(program)
+		env := object.NewEnvironment()
+		evaluated := evaluator.Eval(program, env)
 		if evaluated != nil {
 			io.WriteString(out, evaluated.Inspect())
 			io.WriteString(out, "\n")
